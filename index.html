@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultimate Date Calculator | Calculate Days Between Dates</title>
+    <meta name="description" content="Free online date calculator tool. Calculate days between dates, add or subtract days, find future or past dates, and more.">
+    <link rel="stylesheet" href="styles.css">
+  <link rel="canonical" href="https://datecalculators.org/" />
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">DateCalc</div>
+            <ul>
+                <li><a href="#calculator">Calculator</a></li>
+                <li><a href="#guide">Guide</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#recommendations">Cool Sites</a></li>
+            </ul>
+            <button class="theme-toggle" id="themeToggle">
+                <span class="light-icon">☀️</span>
+                <span class="dark-icon">🌙</span>
+            </button>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>Ultimate Date Calculator</h1>
+            <p>Your powerful tool for all date-related calculations</p>
+        </section>
+
+        <section id="calculator" class="calculator-section">
+            <div class="container">
+                <h2>Date Calculator</h2>
+                
+                <div class="tabs">
+                    <button class="tab-btn active" data-tab="difference">Difference Between Dates</button>
+                    <button class="tab-btn" data-tab="add">Add/Subtract Days</button>
+                    <button class="tab-btn" data-tab="weekday">Find Day of Week</button>
+                    <button class="tab-btn" data-tab="age">Age Calculator</button>
+                </div>
+
+                <div class="tab-content">
+                    <!-- Difference Between Dates -->
+                    <div class="tab-pane active" id="difference">
+                        <div class="calculator-form">
+                            <div class="form-group">
+                                <label for="startDate">Start Date:</label>
+                                <input type="date" id="startDate">
+                            </div>
+                            <div class="form-group">
+                                <label for="endDate">End Date:</label>
+                                <input type="date" id="endDate">
+                            </div>
+                            <button id="calculateDiff" class="calculate-btn">Calculate Difference</button>
+                            <div class="result" id="diffResult"></div>
+                        </div>
+                    </div>
+
+                    <!-- Add/Subtract Days -->
+                    <div class="tab-pane" id="add">
+                        <div class="calculator-form">
+                            <div class="form-group">
+                                <label for="baseDate">Base Date:</label>
+                                <input type="date" id="baseDate">
+                            </div>
+                            <div class="form-group">
+                                <label for="daysToAddSubtract">Days to Add/Subtract:</label>
+                                <input type="number" id="daysToAddSubtract">
+                            </div>
+                            <div class="button-group">
+                                <button id="addDays" class="calculate-btn">Add Days</button>
+                                <button id="subtractDays" class="calculate-btn">Subtract Days</button>
+                            </div>
+                            <div class="result" id="addSubtractResult"></div>
+                        </div>
+                    </div>
+
+                    <!-- Find Day of Week -->
+                    <div class="tab-pane" id="weekday">
+                        <div class="calculator-form">
+                            <div class="form-group">
+                                <label for="weekdayDate">Select Date:</label>
+                                <input type="date" id="weekdayDate">
+                            </div>
+                            <button id="findWeekday" class="calculate-btn">Find Day of Week</button>
+                            <div class="result" id="weekdayResult"></div>
+                        </div>
+                    </div>
+
+                    <!-- Age Calculator -->
+                    <div class="tab-pane" id="age">
+                        <div class="calculator-form">
+                            <div class="form-group">
+                                <label for="birthDate">Birth Date:</label>
+                                <input type="date" id="birthDate">
+                            </div>
+                            <button id="calculateAge" class="calculate-btn">Calculate Age</button>
+                            <div class="result" id="ageResult"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="guide" class="guide-section">
+            <div class="container">
+                <h2>Date Calculator Guide</h2>
+                
+                <div class="guide-content">
+                    <div class="guide-item">
+                        <h3>How to Calculate Date Differences</h3>
+                        <p>Select two dates in the "Difference Between Dates" tab to find out exactly how many days, weeks, months, and years are between them. Perfect for project planning, counting down to important events, or calculating time periods.</p>
+                    </div>
+                    
+                    <div class="guide-item">
+                        <h3>Adding and Subtracting Days</h3>
+                        <p>Need to know what date will be 90 days from now? Or what date was 60 days ago? Use our Add/Subtract feature to quickly calculate future and past dates based on a specific number of days.</p>
+                    </div>
+                    
+                    <div class="guide-item">
+                        <h3>Finding Day of the Week</h3>
+                        <p>Quickly determine what day of the week any date falls on. Great for planning events, checking historical dates, or just satisfying your curiosity about which day of the week you were born.</p>
+                    </div>
+                    
+                    <div class="guide-item">
+                        <h3>Age Calculator</h3>
+                        <p>Calculate your exact age in years, months, and days with our precise age calculator. Great for determining exact age for legal documents, eligibility requirements, or just for fun!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq" class="faq-section">
+            <div class="container">
+                <h2>Frequently Asked Questions</h2>
+                
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <div class="accordion-header">How accurate is this date calculator?</div>
+                        <div class="accordion-content">
+                            <p>Our date calculator is extremely accurate and accounts for leap years, different month lengths, and other calendar nuances. The calculations are based on the standard Gregorian calendar and use JavaScript's built-in Date object for reliability.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <div class="accordion-header">Does the calculator include both the start and end dates in its calculations?</div>
+                        <div class="accordion-content">
+                            <p>By default, our calculator is inclusive of the end date but not the start date. This means if you calculate from January 1 to January 10, it will return 9 days. This follows the standard convention for calculating elapsed time.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <div class="accordion-header">Can I calculate business days instead of calendar days?</div>
+                        <div class="accordion-content">
+                            <p>Currently, our calculator focuses on calendar days. We're working on adding a business days calculator in a future update that will exclude weekends and optionally holidays.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <div class="accordion-header">Is my data saved or shared when I use this calculator?</div>
+                        <div class="accordion-content">
+                            <p>No, all calculations are performed locally in your browser. We don't store, collect, or share any of the dates you enter. Your privacy is important to us!</p>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <div class="accordion-header">Can I use this calculator for historical dates before 1900?</div>
+                        <div class="accordion-content">
+                            <p>Yes, our calculator can handle dates from 0001-01-01 forward. However, please note that very old dates may be subject to calendar system differences (Julian vs. Gregorian) that can affect exact accuracy for historical date calculations.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="recommendations" class="recommendations-section">
+            <div class="container">
+                <h2>Cool Calculator Sites We Recommend</h2>
+                
+                <div class="site-cards">
+                    <div class="site-card">
+                        <div class="site-icon">🧮</div>
+                        <h3>Calculator.net</h3>
+                        <p>Comprehensive collection of financial, health, math, and other specialized calculators.</p>
+                        <a href="https://www.calculator.net/" class="site-link" target="_blank">Visit Site</a>
+                    </div>
+                    
+                    <div class="site-card">
+                        <div class="site-icon">⏱️</div>
+                        <h3>Timeanddate.com</h3>
+                        <p>Everything time-related: world clocks, calendars, holidays, and time zone converters.</p>
+                        <a href="https://www.timeanddate.com/" class="site-link" target="_blank">Visit Site</a>
+                    </div>
+                    
+                    <div class="site-card">
+                        <div class="site-icon">💰</div>
+                        <h3>Bankrate Calculators</h3>
+                        <p>Financial calculators for mortgages, loans, retirement planning, and investments.</p>
+                        <a href="https://www.bankrate.com/calculators/" class="site-link" target="_blank">Visit Site</a>
+                    </div>
+                    
+                    <div class="site-card">
+                        <div class="site-icon">🔢</div>
+                        <h3>Omni Calculator</h3>
+                        <p>Over 2,500 specialized calculators covering physics, math, everyday life, and more.</p>
+                        <a href="https://www.omnicalculator.com/" class="site-link" target="_blank">Visit Site</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>DateCalc</h3>
+                    <p>Your go-to resource for all date calculation needs. Accurate, fast, and user-friendly.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#calculator">Calculator</a></li>
+                        <li><a href="#guide">Guide</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#recommendations">Recommendations</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Use</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>About</h3>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Feedback</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 DateCalc. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
