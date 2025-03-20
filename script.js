@@ -335,11 +335,6 @@ function showReflection(milestone, days) {
     
     reflection.textContent = reflectionText;
     resultElement.appendChild(reflection);
-    
-    // Show the reflection with a fade-in effect
-    setTimeout(() => {
-        reflection.style.display = 'block';
-    }, 100);
 }
 
 /**
@@ -635,9 +630,7 @@ function createLifeVisualization(years, daysPassed) {
     // Add explanation text
     const explanation = document.createElement('p');
     explanation.textContent = `Each dot represents a week. You've lived approximately ${weeksPassed.toLocaleString()} weeks.`;
-    explanation.style.fontSize = '0.8em';
-    explanation.style.marginTop = '10px';
-    explanation.style.textAlign = 'center';
+    explanation.className = 'visualization-explanation';
     container.appendChild(explanation);
 }
 
@@ -700,7 +693,7 @@ function setupMomentTemplates() {
     templateButtons.forEach(button => {
         button.addEventListener('click', function() {
             const template = this.getAttribute('data-template');
-            const resultElement = document.querySelector('.result:not(:empty)');
+            const resultElement = document.querySelector('.result.active');
             
             if (resultElement) {
                 // Get the date from the result
@@ -756,7 +749,6 @@ function setupMomentTemplates() {
  */
 function setupLifeVisualization() {
     // This is handled in the calculateAge function
-    // but could be expanded for standalone visualization
 }
 
 /**
@@ -772,7 +764,7 @@ function formatDateForDisplay(date) {
  */
 function showResult(resultId, content) {
     const resultElement = document.getElementById(resultId);
-    resultElement.innerHTML = `<h3>Results</h3>${content}`;
+    resultElement.innerHTML = content;
     resultElement.classList.add('active');
     
     // Scroll to result
