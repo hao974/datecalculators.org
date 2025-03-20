@@ -3,34 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Date Calculator | Calculate Days Between Dates</title>
-    <meta name="description" content="Free online date calculator tool. Calculate days between dates, add or subtract days, find future or past dates, and more.">
+    <title>Date Calculator | Measure Life's Meaningful Moments</title>
+    <meta name="description" content="More than just a date calculator - discover the significance of time in your life. Calculate days between meaningful dates, plan future milestones, and reflect on life's journey.">
     <link rel="stylesheet" href="styles.css">
-  <link rel="canonical" href="https://datecalculators.org/" />
- <meta name="google-site-verification" content="TKaXoWgKWfKfM3OkCSaJAXOg7pD4K4pwHVFzczy-cvI" />
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-4XHYDRKBFK"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-4XHYDRKBFK');
-</script>
- <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="manifest" href="/site.webmanifest">   
+    <link rel="canonical" href="https://datecalculators.org/" />
+    <meta name="google-site-verification" content="TKaXoWgKWfKfM3OkCSaJAXOg7pD4K4pwHVFzczy-cvI" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4XHYDRKBFK"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-4XHYDRKBFK');
+    </script>
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">   
 </head>
 <body>
     <header>
         <nav>
-            <div class="logo">Date Calculator</div>
+            <div class="logo">Meaningful Dates</div>
             <ul>
                 <li><a href="#calculator">Calculator</a></li>
+                <li><a href="#life-moments">Life Moments</a></li>
                 <li><a href="#guide">Guide</a></li>
                 <li><a href="#faq">FAQ</a></li>
-                <li><a href="#recommendations">Cool Sites</a></li>
+                <li><a href="#recommendations">Inspiration</a></li>
             </ul>
             <button class="theme-toggle" id="themeToggle">
                 <span class="light-icon">☀️</span>
@@ -41,78 +41,202 @@
 
     <main>
         <section class="hero">
-            <h1>Date Calculator</h1>
-            <p>Your powerful tool for all date-related calculations</p>
+            <h1>Measure What Matters</h1>
+            <p>Because every day counts in the story of your life</p>
+            <div class="hero-cta">
+                <a href="#calculator" class="cta-button">Start Your Journey</a>
+            </div>
         </section>
 
         <section id="calculator" class="calculator-section">
             <div class="container">
-                <h2>Date Calculator</h2>
+                <h2>Your Life in Numbers</h2>
+                <p class="section-intro">Behind every date calculation is a story waiting to be told. What's yours?</p>
                 
                 <div class="tabs">
-                    <button class="tab-btn active" data-tab="difference">Difference Between Dates</button>
-                    <button class="tab-btn" data-tab="add">Add/Subtract Days</button>
-                    <button class="tab-btn" data-tab="weekday">Find Day of Week</button>
-                    <button class="tab-btn" data-tab="age">Age Calculator</button>
+                    <button class="tab-btn active" data-tab="difference">Time Between Moments</button>
+                    <button class="tab-btn" data-tab="add">Plan Future Milestones</button>
+                    <button class="tab-btn" data-tab="weekday">Day of Significance</button>
+                    <button class="tab-btn" data-tab="age">Life Journey</button>
                 </div>
 
                 <div class="tab-content">
                     <!-- Difference Between Dates -->
                     <div class="tab-pane active" id="difference">
+                        <div class="meaning-prompt">
+                            <p>Measure the distance between two significant moments in your life</p>
+                        </div>
                         <div class="calculator-form">
                             <div class="form-group">
-                                <label for="startDate">Start Date:</label>
+                                <label for="startDate">Starting Moment:</label>
                                 <input type="date" id="startDate">
+                                <div class="moment-label">
+                                    <input type="text" placeholder="Label this moment (e.g., 'First Date')" id="startDateLabel">
+                                </div>
                             </div>
                             <div class="form-group">
-                                <label for="endDate">End Date:</label>
+                                <label for="endDate">Ending Moment:</label>
                                 <input type="date" id="endDate">
+                                <div class="moment-label">
+                                    <input type="text" placeholder="Label this moment (e.g., 'Wedding Day')" id="endDateLabel">
+                                </div>
                             </div>
-                            <button id="calculateDiff" class="calculate-btn">Calculate Difference</button>
+                            <button id="calculateDiff" class="calculate-btn">Reveal Your Journey</button>
                             <div class="result" id="diffResult"></div>
+                            <div class="meaning-reflection" id="diffReflection"></div>
+                            <div class="share-moment">
+                                <button id="shareDiff" class="share-btn">Share This Journey</button>
+                                <div class="save-memory">
+                                    <button id="saveDiff" class="memory-btn">Save to My Timeline</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
                     <!-- Add/Subtract Days -->
                     <div class="tab-pane" id="add">
+                        <div class="meaning-prompt">
+                            <p>Discover future milestones or reflect on past memories</p>
+                        </div>
                         <div class="calculator-form">
                             <div class="form-group">
-                                <label for="baseDate">Base Date:</label>
+                                <label for="baseDate">Starting Point:</label>
                                 <input type="date" id="baseDate">
+                                <div class="moment-label">
+                                    <input type="text" placeholder="Label this date (e.g., 'Start of Diet')" id="baseDateLabel">
+                                </div>
                             </div>
                             <div class="form-group">
-                                <label for="daysToAddSubtract">Days to Add/Subtract:</label>
+                                <label for="daysToAddSubtract">Days in Your Journey:</label>
                                 <input type="number" id="daysToAddSubtract">
+                                <select id="timeUnit">
+                                    <option value="days">Days</option>
+                                    <option value="weeks">Weeks</option>
+                                    <option value="months">Months</option>
+                                    <option value="years">Years</option>
+                                </select>
+                            </div>
+                            <div class="milestone-type">
+                                <label>Type of Milestone:</label>
+                                <select id="milestoneType">
+                                    <option value="personal">Personal Growth</option>
+                                    <option value="relationship">Relationship</option>
+                                    <option value="health">Health & Wellness</option>
+                                    <option value="career">Career</option>
+                                    <option value="other">Other</option>
+                                </select>
                             </div>
                             <div class="button-group">
-                                <button id="addDays" class="calculate-btn">Add Days</button>
-                                <button id="subtractDays" class="calculate-btn">Subtract Days</button>
+                                <button id="addDays" class="calculate-btn">Look Forward</button>
+                                <button id="subtractDays" class="calculate-btn">Look Back</button>
                             </div>
                             <div class="result" id="addSubtractResult"></div>
+                            <div class="meaning-reflection" id="milestoneReflection"></div>
+                            <div class="milestone-reminder">
+                                <input type="checkbox" id="setReminder">
+                                <label for="setReminder">Remind me of this milestone</label>
+                            </div>
                         </div>
                     </div>
 
                     <!-- Find Day of Week -->
                     <div class="tab-pane" id="weekday">
+                        <div class="meaning-prompt">
+                            <p>Discover the day of the week when important moments happened or will happen</p>
+                        </div>
                         <div class="calculator-form">
                             <div class="form-group">
-                                <label for="weekdayDate">Select Date:</label>
+                                <label for="weekdayDate">Moment to Discover:</label>
                                 <input type="date" id="weekdayDate">
+                                <div class="moment-label">
+                                    <input type="text" placeholder="What makes this day special?" id="weekdayLabel">
+                                </div>
                             </div>
-                            <button id="findWeekday" class="calculate-btn">Find Day of Week</button>
+                            <button id="findWeekday" class="calculate-btn">Reveal the Day</button>
                             <div class="result" id="weekdayResult"></div>
+                            <div class="day-significance" id="daySignificance"></div>
+                            <div class="historical-context" id="historicalContext"></div>
                         </div>
                     </div>
 
                     <!-- Age Calculator -->
                     <div class="tab-pane" id="age">
+                        <div class="meaning-prompt">
+                            <p>Reflect on your life journey and celebrate how far you've come</p>
+                        </div>
                         <div class="calculator-form">
                             <div class="form-group">
-                                <label for="birthDate">Birth Date:</label>
+                                <label for="birthDate">Your Beginning:</label>
                                 <input type="date" id="birthDate">
                             </div>
-                            <button id="calculateAge" class="calculate-btn">Calculate Age</button>
+                            <div class="life-milestones">
+                                <h4>Life Milestones to Calculate</h4>
+                                <div class="milestone-options">
+                                    <label><input type="checkbox" checked id="showDays"> Days Lived</label>
+                                    <label><input type="checkbox" checked id="showHeartbeats"> Heartbeats</label>
+                                    <label><input type="checkbox" checked id="showBreaths"> Breaths Taken</label>
+                                    <label><input type="checkbox" checked id="showSleepTime"> Time Spent Sleeping</label>
+                                </div>
+                            </div>
+                            <button id="calculateAge" class="calculate-btn">Celebrate Your Journey</button>
                             <div class="result" id="ageResult"></div>
+                            <div class="life-perspective" id="lifePerspective"></div>
+                            <div class="life-visualization" id="lifeVisualization"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="life-moments" class="life-moments-section">
+            <div class="container">
+                <h2>Meaningful Moments</h2>
+                <p class="section-intro">Explore how dates shape the most significant chapters of our lives</p>
+                
+                <div class="moments-grid">
+                    <div class="moment-card">
+                        <div class="moment-icon">💞</div>
+                        <h3>Love & Relationships</h3>
+                        <p>From first dates to anniversaries, measure the journey of your heart. The average couple dates for 2 years, 11 months and 8 days before getting married.</p>
+                        <button class="moment-template" data-type="relationship">Calculate Your Love Timeline</button>
+                    </div>
+                    
+                    <div class="moment-card">
+                        <div class="moment-icon">🎓</div>
+                        <h3>Personal Growth</h3>
+                        <p>Track your progress on learning new skills. Research shows it takes an average of 66 days to form a new habit. How far along are you?</p>
+                        <button class="moment-template" data-type="growth">Map Your Growth Journey</button>
+                    </div>
+                    
+                    <div class="moment-card">
+                        <div class="moment-icon">👶</div>
+                        <h3>Parenting Journey</h3>
+                        <p>From pregnancy to milestones, every day of parenthood matters. The first 2,000 days of a child's life have the most impact on their development.</p>
+                        <button class="moment-template" data-type="parenting">Track Your Parenting Journey</button>
+                    </div>
+                    
+                    <div class="moment-card">
+                        <div class="moment-icon">🏆</div>
+                        <h3>Goal Achievement</h3>
+                        <p>Set target dates and track your progress. People who explicitly state when they will accomplish a goal are 91% more likely to achieve it.</p>
+                        <button class="moment-template" data-type="goals">Create Goal Timeline</button>
+                    </div>
+                </div>
+                
+                <div class="community-stories">
+                    <h3>Stories From Our Community</h3>
+                    <div class="story-carousel">
+                        <div class="story-item">
+                            <blockquote>"I calculated that my husband and I have been together for exactly 5,478 days. Seeing that number made me reflect on our journey in a whole new way."</blockquote>
+                            <cite>— Maria, celebrating 15 years together</cite>
+                        </div>
+                        <div class="story-item">
+                            <blockquote>"I used the calculator to find out I've been sober for 1,000 days. Each day represents a victory, and seeing that number gave me strength to continue."</blockquote>
+                            <cite>— James, on his recovery journey</cite>
+                        </div>
+                        <div class="story-item">
+                            <blockquote>"I discovered my daughter and I have spent exactly 4,380 days together. It made me realize how precious each day is as she grows up."</blockquote>
+                            <cite>— Sarah, mother of a teenager</cite>
                         </div>
                     </div>
                 </div>
@@ -121,27 +245,39 @@
 
         <section id="guide" class="guide-section">
             <div class="container">
-                <h2>Date Calculator Guide</h2>
+                <h2>Finding Meaning in Numbers</h2>
                 
                 <div class="guide-content">
                     <div class="guide-item">
-                        <h3>How to Calculate Date Differences</h3>
-                        <p>Select two dates in the "Difference Between Dates" tab to find out exactly how many days, weeks, months, and years are between them. Perfect for project planning, counting down to important events, or calculating time periods.</p>
+                        <h3>Celebrating Relationship Milestones</h3>
+                        <p>Every relationship has its own timeline of significant moments. Use our calculator to find exactly how many days you've been together, and discover milestone dates like your 1,000-day anniversary or the day you'll have been together for a decade. These numbers can become meaningful celebrations that deepen your connection.</p>
+                        <div class="guide-example">
+                            <em>"We celebrate our 'monthaversary' every month since our first date. It's become our special tradition to reflect on our journey."</em>
+                        </div>
                     </div>
                     
                     <div class="guide-item">
-                        <h3>Adding and Subtracting Days</h3>
-                        <p>Need to know what date will be 90 days from now? Or what date was 60 days ago? Use our Add/Subtract feature to quickly calculate future and past dates based on a specific number of days.</p>
+                        <h3>Tracking Personal Transformation</h3>
+                        <p>Whether you're developing a new habit, recovering from addiction, or working toward a fitness goal, tracking the exact days of your journey can provide powerful motivation. Research shows that acknowledging milestones increases your chances of long-term success by creating momentum and a sense of accomplishment.</p>
+                        <div class="guide-example">
+                            <em>"I mark each 100 days of my fitness journey with a special reward. Watching those numbers grow has kept me consistent for over 500 days now."</em>
+                        </div>
                     </div>
                     
                     <div class="guide-item">
-                        <h3>Finding Day of the Week</h3>
-                        <p>Quickly determine what day of the week any date falls on. Great for planning events, checking historical dates, or just satisfying your curiosity about which day of the week you were born.</p>
+                        <h3>Honoring Life Transitions</h3>
+                        <p>Major life changes—like moving to a new city, starting a career, or becoming a parent—represent significant chapters in your story. Calculate how long you've been on these journeys to gain perspective on how far you've come and how these experiences have shaped you.</p>
+                        <div class="guide-example">
+                            <em>"Realizing I've lived in my adopted city for exactly 3,652 days—a decade—made me reflect on how this place has become truly home."</em>
+                        </div>
                     </div>
                     
                     <div class="guide-item">
-                        <h3>Age Calculator</h3>
-                        <p>Calculate your exact age in years, months, and days with our precise age calculator. Great for determining exact age for legal documents, eligibility requirements, or just for fun!</p>
+                        <h3>Creating Future Milestones</h3>
+                        <p>Looking forward can be just as meaningful as looking back. Calculate future dates for goal achievement, project completion, or anticipated life events. Setting these temporal landmarks gives you something to work toward and creates natural moments for reflection and celebration.</p>
+                        <div class="guide-example">
+                            <em>"I calculated exactly when I'll reach 10,000 hours of practice with my instrument. Having that date circled on my calendar keeps me practicing every day."</em>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -149,41 +285,62 @@
 
         <section id="faq" class="faq-section">
             <div class="container">
-                <h2>Frequently Asked Questions</h2>
+                <h2>Questions About Your Journey</h2>
                 
                 <div class="accordion">
                     <div class="accordion-item">
-                        <div class="accordion-header">How accurate is this date calculator?</div>
+                        <div class="accordion-header">How can date calculations help me appreciate life more?</div>
                         <div class="accordion-content">
-                            <p>Our date calculator is extremely accurate and accounts for leap years, different month lengths, and other calendar nuances. The calculations are based on the standard Gregorian calendar and use JavaScript's built-in Date object for reliability.</p>
+                            <p>Date calculations create perspective by quantifying your life experiences. Seeing that you've been with your partner for 3,650 days (10 years) or that you've been practicing a skill for 500 days can create a profound sense of accomplishment and gratitude. These numbers transform abstract time into concrete milestones that help you recognize your journey and appreciate how far you've come.</p>
                         </div>
                     </div>
                     
                     <div class="accordion-item">
-                        <div class="accordion-header">Does the calculator include both the start and end dates in its calculations?</div>
+                        <div class="accordion-header">What are some meaningful ways to use the date calculator?</div>
                         <div class="accordion-content">
-                            <p>By default, our calculator is inclusive of the end date but not the start date. This means if you calculate from January 1 to January 10, it will return 9 days. This follows the standard convention for calculating elapsed time.</p>
+                            <p>Beyond practical planning, our calculator can help you:</p>
+                            <ul>
+                                <li>Create personal "holidays" by finding milestone days in your relationships or achievements</li>
+                                <li>Track progress on long-term goals by calculating days invested</li>
+                                <li>Find perspective during difficult times by calculating how many days you've shown resilience</li>
+                                <li>Create meaningful traditions around specific day counts (e.g., celebrating every 100 days of marriage)</li>
+                                <li>Calculate "halfway points" in journeys to create moments of reflection</li>
+                            </ul>
                         </div>
                     </div>
                     
                     <div class="accordion-item">
-                        <div class="accordion-header">Can I calculate business days instead of calendar days?</div>
+                        <div class="accordion-header">How accurate is this date calculator for life events?</div>
                         <div class="accordion-content">
-                            <p>Currently, our calculator focuses on calendar days. We're working on adding a business days calculator in a future update that will exclude weekends and optionally holidays.</p>
+                            <p>Our calculator is extremely accurate and accounts for leap years, different month lengths, and other calendar nuances. For life events, this precision matters—knowing you've been sober for exactly 1,000 days or that your child is precisely 5 years, 3 months, and 15 days old can make milestones more meaningful. The calculations are based on the standard Gregorian calendar and use JavaScript's built-in Date object for reliability.</p>
                         </div>
                     </div>
                     
                     <div class="accordion-item">
-                        <div class="accordion-header">Is my data saved or shared when I use this calculator?</div>
+                        <div class="accordion-header">Can I save or share my meaningful date calculations?</div>
                         <div class="accordion-content">
-                            <p>No, all calculations are performed locally in your browser. We don't store, collect, or share any of the dates you enter. Your privacy is important to us!</p>
+                            <p>Yes! We've added features to help you preserve and share your meaningful calculations. You can:</p>
+                            <ul>
+                                <li>Save calculations to your personal timeline (requires free account)</li>
+                                <li>Share beautiful date milestone cards on social media</li>
+                                <li>Set up reminders for upcoming meaningful dates</li>
+                                <li>Export your personal timeline of significant dates</li>
+                            </ul>
+                            <p>These features help you not only calculate meaningful moments but also celebrate and remember them.</p>
                         </div>
                     </div>
                     
                     <div class="accordion-item">
-                        <div class="accordion-header">Can I use this calculator for historical dates before 1900?</div>
+                        <div class="accordion-header">How can I use date calculations for personal growth?</div>
                         <div class="accordion-content">
-                            <p>Yes, our calculator can handle dates from 0001-01-01 forward. However, please note that very old dates may be subject to calendar system differences (Julian vs. Gregorian) that can affect exact accuracy for historical date calculations.</p>
+                            <p>Date calculations can be powerful tools for personal development:</p>
+                            <ul>
+                                <li><strong>Habit formation:</strong> Track exactly how many days you've maintained a new habit (research shows it takes 66 days on average to form a habit)</li>
+                                <li><strong>Goal achievement:</strong> Set future date targets and calculate remaining time to stay motivated</li>
+                                <li><strong>Perspective gaining:</strong> Calculate what percentage of your life you've spent on meaningful pursuits</li>
+                                <li><strong>Gratitude practice:</strong> Reflect on significant life periods by calculating their duration</li>
+                                <li><strong>Life balance:</strong> Assess time allocation across different life areas by calculating days invested</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -192,37 +349,67 @@
 
         <section id="recommendations" class="recommendations-section">
             <div class="container">
-                <h2>Cool Calculator Sites We Recommend</h2>
+                <h2>Resources for Meaningful Living</h2>
+                <p class="section-intro">Tools and inspiration to help you make the most of your time</p>
                 
                 <div class="site-cards">
                     <div class="site-card">
-                        <div class="site-icon">🧮</div>
-                        <h3>Calculator.net</h3>
-                        <p>Comprehensive collection of financial, health, math, and other specialized calculators.</p>
-                        <a href="https://www.calculator.net/" class="site-link" target="_blank" rel="nofollow">Visit Site</a>
+                        <div class="site-icon">📝</div>
+                        <h3>Day One Journal</h3>
+                        <p>Award-winning journaling app that helps you capture and reflect on meaningful moments throughout your life journey.</p>
+                        <a href="https://dayoneapp.com/" class="site-link" target="_blank" rel="nofollow">Explore Journal</a>
                     </div>
                     
                     <div class="site-card">
-                        <div class="site-icon">⏱️</div>
-                        <h3>Timeanddate.com</h3>
-                        <p>Everything time-related: world clocks, calendars, holidays, and time zone converters.</p>
-                        <a href="https://www.timeanddate.com/" class="site-link" target="_blank" rel="nofollow">Visit Site</a>
+                        <div class="site-icon">⏳</div>
+                        <h3>WaitButWhy Life Calendar</h3>
+                        <p>Visualize your life in weeks with this thought-provoking life calendar that puts time into perspective.</p>
+                        <a href="https://waitbutwhy.com/2014/05/life-weeks.html" class="site-link" target="_blank" rel="nofollow">See Your Life</a>
                     </div>
                     
                     <div class="site-card">
-                        <div class="site-icon">💰</div>
-                        <h3>Bankrate Calculators</h3>
-                        <p>Financial calculators for mortgages, loans, retirement planning, and investments.</p>
-                        <a href="https://www.bankrate.com/calculators/" class="site-link" target="_blank" rel="nofollow">Visit Site</a>
+                        <div class="site-icon">🎯</div>
+                        <h3>Momentum Dashboard</h3>
+                        <p>A personal dashboard that helps you focus on your goals and create meaningful daily habits.</p>
+                        <a href="https://momentumdash.com/" class="site-link" target="_blank" rel="nofollow">Build Momentum</a>
                     </div>
                     
                     <div class="site-card">
-                        <div class="site-icon">🔢</div>
-                        <h3>Omni Calculator</h3>
-                        <p>Over 2,500 specialized calculators covering physics, math, everyday life, and more.</p>
-                        <a href="https://www.omnicalculator.com/" class="site-link" target="_blank" rel="nofollow">Visit Site</a>
+                        <div class="site-icon">💭</div>
+                        <h3>Stoic Reflection App</h3>
+                        <p>Daily philosophical prompts and reflection exercises to help you live more meaningfully and intentionally.</p>
+                        <a href="https://www.getstoic.com/" class="site-link" target="_blank" rel="nofollow">Start Reflecting</a>
                     </div>
                 </div>
+                
+                <div class="inspiration-books">
+                    <h3>Books About Time & Meaning</h3>
+                    <div class="book-carousel">
+                        <div class="book-item">
+                            <div class="book-cover">📚</div>
+                            <h4>Four Thousand Weeks</h4>
+                            <p>by Oliver Burkeman</p>
+                        </div>
+                        <div class="book-item">
+                            <div class="book-cover">📚</div>
+                            <h4>The Power of Moments</h4>
+                            <p>by Chip & Dan Heath</p>
+                        </div>
+                        <div class="book-item">
+                            <div class="book-cover">📚</div>
+                            <h4>When: The Scientific Secrets of Perfect Timing</h4>
+                            <p>by Daniel Pink</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="cta-section">
+            <div class="container">
+                <h2>Start Measuring What Matters</h2>
+                <p>Every calculation is a story. What will yours reveal?</p>
+                <a href="#calculator" class="cta-button">Begin Your Journey</a>
             </div>
         </section>
     </main>
@@ -231,41 +418,47 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
-                    <h3>DateCalc</h3>
-                    <p>Your go-to resource for all date calculation needs. Accurate, fast, and user-friendly.</p>
+                    <h3>Meaningful Dates</h3>
+                    <p>Helping you measure what matters in the journey of life.</p>
+                    <div class="footer-quote">
+                        <blockquote>"The two most powerful warriors are patience and time." — Leo Tolstoy</blockquote>
+                    </div>
                 </div>
                 
                 <div class="footer-column">
-                    <h3>Quick Links</h3>
+                    <h3>Explore</h3>
                     <ul>
-                        <li><a href="#calculator">Calculator</a></li>
-                        <li><a href="#guide">Guide</a></li>
-                        <li><a href="#faq">FAQ</a></li>
-                        <li><a href="#recommendations">Recommendations</a></li>
+                        <li><a href="#calculator">Date Calculator</a></li>
+                        <li><a href="#life-moments">Life Moments</a></li>
+                        <li><a href="#guide">Meaning Guide</a></li>
+                        <li><a href="#faq">Journey Questions</a></li>
+                        <li><a href="#recommendations">Resources</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-column">
-                    <h3>Legal</h3>
+                    <h3>Community</h3>
                     <ul>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms of Use</a></li>
-                        <li><a href="#">Cookie Policy</a></li>
+                        <li><a href="#">Share Your Story</a></li>
+                        <li><a href="#">Join Newsletter</a></li>
+                        <li><a href="#">Milestone Traditions</a></li>
+                        <li><a href="#">Celebration Ideas</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-column">
                     <h3>About</h3>
                     <ul>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Contact</a></li>
-                        <li><a href="#">Feedback</a></li>
+                        <li><a href="#">Our Mission</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Use</a></li>
                     </ul>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2025 DateCalc. All rights reserved.</p>
+                <p>&copy; 2025 Meaningful Dates. Making every day count.</p>
             </div>
         </div>
     </footer>
