@@ -13,6 +13,15 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Set up event listeners for all calculators
     setupCalculators();
+    
+    // Set up milestone options
+    setupMilestoneOptions();
+    
+    // Set up moment templates
+    setupMomentTemplates();
+    
+    // Set up life visualization
+    setupLifeVisualization();
 });
 
 /**
@@ -167,24 +176,170 @@ function setupDateDifferenceCalculator() {
         
         // Display the result
         showResult('diffResult', `
-            <div class="result-item">
-                <span class="result-label">Days:</span> 
-                <span class="result-value">${diffResult.days}</span>
+            <div class="result-detail">
+                <div class="result-item">
+                    <span class="result-number">${diffResult.days}</span>
+                    <span class="result-label">Days</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-number">${diffResult.weeks.toFixed(1)}</span>
+                    <span class="result-label">Weeks</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-number">${diffResult.months.toFixed(1)}</span>
+                    <span class="result-label">Months</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-number">${diffResult.years.toFixed(2)}</span>
+                    <span class="result-label">Years</span>
+                </div>
             </div>
-            <div class="result-item">
-                <span class="result-label">Weeks:</span> 
-                <span class="result-value">${diffResult.weeks.toFixed(1)}</span>
-            </div>
-            <div class="result-item">
-                <span class="result-label">Months:</span> 
-                <span class="result-value">${diffResult.months.toFixed(1)}</span>
-            </div>
-            <div class="result-item">
-                <span class="result-label">Years:</span> 
-                <span class="result-value">${diffResult.years.toFixed(2)}</span>
+            <div class="meaning-prompt">
+                ${generateMeaningPrompt(diffResult.days, startDate, endDate)}
             </div>
         `);
+        
+        // Show milestone options if appropriate
+        if (diffResult.days > 30) {
+            showMilestoneOptions(startDate, endDate, diffResult.days);
+        }
     });
+}
+
+/**
+ * Generates a meaning prompt based on the time difference
+ */
+function generateMeaningPrompt(days, startDate, endDate) {
+    // Different prompts based on the time span
+    if (days < 0) {
+        return "Looking back on time that has passed can help us reflect on our journey and growth.";
+    } else if (days === 0) {
+        return "Today is a gift. That's why it's called the present.";
+    } else if (days < 7) {
+        return "A week can hold so many possibilities. What small joy can you plan for each day?";
+    } else if (days < 30) {
+        return "A month is enough time to build a new habit or start a mini project. What would you like to accomplish?";
+    } else if (days < 90) {
+        return "This season of your life has purpose. What would make this time meaningful for you?";
+    } else if (days < 365) {
+        return "Within a year, you can transform many aspects of your life. What seeds will you plant today?";
+    } else {
+        const years = Math.floor(days / 365);
+        return `${years} ${years === 1 ? 'year' : 'years'} is a significant chapter in your life story. How would you like this chapter to be remembered?`;
+    }
+}
+
+/**
+ * Shows milestone options based on the time period
+ */
+function showMilestoneOptions(startDate, endDate, days) {
+    const milestoneContainer = document.createElement('div');
+    milestoneContainer.className = 'milestone-options';
+    
+    let milestones = [];
+    
+    if (days > 30 && days < 365) {
+        milestones = [
+            "Learn a new skill",
+            "Read 5 books",
+            "Daily meditation",
+            "Weekly nature walks",
+            "Connect with old friends"
+        ];
+    } else if (days >= 365 && days < 1825) { // 1-5 years
+        milestones = [
+            "Career advancement",
+            "Travel to new places",
+            "Master a language",
+            "Build meaningful relationships",
+            "Improve health & fitness"
+        ];
+    } else { // 5+ years
+        milestones = [
+            "Major life transition",
+            "Legacy project",
+            "Financial freedom",
+            "Personal transformation",
+            "Mentor others"
+        ];
+    }
+    
+    milestones.forEach(milestone => {
+        const option = document.createElement('div');
+        option.className = 'milestone-option';
+        option.textContent = milestone;
+        option.addEventListener('click', () => {
+            document.querySelectorAll('.milestone-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            option.classList.add('selected');
+            
+            // Show reflection prompt
+            showReflection(milestone, days);
+        });
+        milestoneContainer.appendChild(option);
+    });
+    
+    // Add to result
+    const resultElement = document.getElementById('diffResult');
+    
+    // Check if milestone options already exist
+    const existingOptions = resultElement.querySelector('.milestone-options');
+    if (existingOptions) {
+        existingOptions.remove();
+    }
+    
+    // Check if reflection already exists
+    const existingReflection = resultElement.querySelector('.reflection');
+    if (existingReflection) {
+        existingReflection.remove();
+    }
+    
+    resultElement.appendChild(milestoneContainer);
+}
+
+/**
+ * Shows a reflection prompt based on the selected milestone
+ */
+function showReflection(milestone, days) {
+    const resultElement = document.getElementById('diffResult');
+    
+    // Remove existing reflection if any
+    const existingReflection = resultElement.querySelector('.reflection');
+    if (existingReflection) {
+        existingReflection.remove();
+    }
+    
+    const reflection = document.createElement('div');
+    reflection.className = 'reflection';
+    
+    // Generate reflection prompt based on milestone
+    let reflectionText = "";
+    if (milestone.includes("skill") || milestone.includes("language")) {
+        reflectionText = `Learning something new can transform how we see the world. What small steps could you take each day towards mastering ${milestone.toLowerCase()}?`;
+    } else if (milestone.includes("book")) {
+        reflectionText = "Books open new worlds and perspectives. Which titles have been on your reading list the longest?";
+    } else if (milestone.includes("meditation") || milestone.includes("health")) {
+        reflectionText = "Investing in your wellbeing creates ripples through all areas of your life. How might this practice change your daily experience?";
+    } else if (milestone.includes("nature") || milestone.includes("travel")) {
+        reflectionText = "New environments refresh our perspective. What places call to your spirit of adventure?";
+    } else if (milestone.includes("connect") || milestone.includes("relationship")) {
+        reflectionText = "Our connections give life meaning. Who are the people you want to prioritize in this chapter?";
+    } else if (milestone.includes("career") || milestone.includes("financial")) {
+        reflectionText = "Work can be a source of purpose and growth. What would make this professional chapter fulfilling for you?";
+    } else if (milestone.includes("legacy") || milestone.includes("mentor")) {
+        reflectionText = "What wisdom or values do you hope to pass on to others? Your influence can span generations.";
+    } else {
+        reflectionText = `This time period of ${Math.floor(days/30)} months is precious. How will you make it count?`;
+    }
+    
+    reflection.textContent = reflectionText;
+    resultElement.appendChild(reflection);
+    
+    // Show the reflection with a fade-in effect
+    setTimeout(() => {
+        reflection.style.display = 'block';
+    }, 100);
 }
 
 /**
@@ -252,18 +407,85 @@ function calculateNewDate(isAdd) {
     // Format the dates for display
     const formattedBaseDate = formatDateForDisplay(baseDate);
     const formattedNewDate = formatDateForDisplay(newDate);
+    const weekday = getWeekdayName(newDate);
     
     // Display result
     const operation = isAdd ? 'Adding' : 'Subtracting';
     showResult('addSubtractResult', `
-        <div class="result-item">
-            <span class="result-label">${operation} ${days} days to ${formattedBaseDate}</span>
+        <div class="result-date">${formattedNewDate}</div>
+        <div class="result-day">${weekday}</div>
+        <div class="result-detail">
+            <div class="result-item">
+                <span class="result-label">${operation} ${days} days to ${formattedBaseDate}</span>
+            </div>
         </div>
-        <div class="result-item">
-            <span class="result-label">New Date:</span> 
-            <span class="result-value">${formattedNewDate}</span>
+        ${getHistoricalContext(newDate)}
+        <div class="day-significance">
+            ${getDaySignificance(newDate)}
         </div>
     `);
+}
+
+/**
+ * Gets historical context for a date
+ */
+function getHistoricalContext(date) {
+    const month = date.getMonth();
+    const day = date.getDate();
+    
+    // Sample historical events for each month/day combination
+    const events = {
+        "0-1": "This day in 1892: Ellis Island began processing immigrants",
+        "1-14": "This day in 1929: The St. Valentine's Day Massacre",
+        "2-17": "This day in 461: Saint Patrick died",
+        "3-15": "This day in 1912: The Titanic sank",
+        "4-8": "This day in 1945: VE Day (Victory in Europe Day)",
+        "5-6": "This day in 1944: D-Day landings in Normandy",
+        "6-4": "This day in 1776: US Declaration of Independence signed",
+        "7-6": "This day in 1945: Atomic bomb dropped on Hiroshima",
+        "8-11": "This day in 2001: 9/11 terrorist attacks",
+        "9-31": "This day in 1517: Martin Luther posted his 95 Theses",
+        "10-11": "This day in 1918: End of World War I",
+        "11-25": "Traditional Christmas Day celebration"
+    };
+    
+    const key = `${month}-${day}`;
+    
+    if (events[key]) {
+        return `<div class="historical-context">${events[key]}</div>`;
+    } else {
+        // Return a random event if specific date not found
+        const keys = Object.keys(events);
+        const randomKey = keys[Math.floor(Math.random() * keys.length)];
+        return `<div class="historical-context">${events[randomKey]}</div>`;
+    }
+}
+
+/**
+ * Gets significance for a particular day
+ */
+function getDaySignificance(date) {
+    const weekday = date.getDay();
+    const month = date.getMonth();
+    const day = date.getDate();
+    
+    // Special days
+    if (month === 0 && day === 1) return "New Year's Day - A perfect time for fresh starts and new intentions.";
+    if (month === 11 && day === 25) return "Christmas Day - A time for connection, giving, and reflection.";
+    if (month === 1 && day === 14) return "Valentine's Day - Celebrate love in all its forms.";
+    
+    // Weekday significance
+    const weekdayMeanings = [
+        "Sundays are perfect for rest, reflection, and preparation for the week ahead.",
+        "Mondays offer the energy of new beginnings and fresh starts.",
+        "Tuesdays bring productivity and momentum to your projects.",
+        "Wednesdays mark the middle of the week - a good time to evaluate progress.",
+        "Thursdays carry anticipation and the energy to complete what you've started.",
+        "Fridays bring a sense of accomplishment and transition to personal time.",
+        "Saturdays offer freedom for creativity, connection, and joy."
+    ];
+    
+    return weekdayMeanings[weekday];
 }
 
 /**
@@ -285,9 +507,10 @@ function setupWeekdayFinder() {
         const formattedDate = formatDateForDisplay(date);
         
         showResult('weekdayResult', `
-            <div class="result-item">
-                <span class="result-label">${formattedDate} falls on:</span> 
-                <span class="result-value">${weekday}</span>
+            <div class="result-date">${formattedDate}</div>
+            <div class="result-day">${weekday}</div>
+            <div class="day-significance">
+                ${getDaySignificance(date)}
             </div>
         `);
     });
@@ -329,24 +552,93 @@ function setupAgeCalculator() {
         
         // Display result
         showResult('ageResult', `
-            <div class="result-item">
-                <span class="result-label">Years:</span> 
-                <span class="result-value">${ageDetails.years}</span>
+            <div class="result-detail">
+                <div class="result-item">
+                    <span class="result-number">${ageDetails.years}</span>
+                    <span class="result-label">Years</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-number">${ageDetails.months}</span>
+                    <span class="result-label">Months</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-number">${ageDetails.days}</span>
+                    <span class="result-label">Days</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-number">${ageDetails.totalDays.toLocaleString()}</span>
+                    <span class="result-label">Total Days</span>
+                </div>
             </div>
-            <div class="result-item">
-                <span class="result-label">Months:</span> 
-                <span class="result-value">${ageDetails.months}</span>
+            <div class="meaning-prompt">
+                ${generateAgeMeaningPrompt(ageDetails.years)}
             </div>
-            <div class="result-item">
-                <span class="result-label">Days:</span> 
-                <span class="result-value">${ageDetails.days}</span>
-            </div>
-            <div class="result-item">
-                <span class="result-label">Total Days:</span> 
-                <span class="result-value">${ageDetails.totalDays}</span>
-            </div>
+            <div id="lifeVisualization" class="life-visualization"></div>
         `);
+        
+        // Create life visualization
+        createLifeVisualization(ageDetails.years, ageDetails.totalDays);
     });
+}
+
+/**
+ * Generates a meaning prompt based on age
+ */
+function generateAgeMeaningPrompt(years) {
+    if (years < 13) {
+        return "Childhood is a time of wonder and discovery. Every day brings new learning and growth.";
+    } else if (years < 20) {
+        return "The teenage years shape our identity. What values and passions are becoming important to you?";
+    } else if (years < 30) {
+        return "Your twenties are for exploration and building foundations. What paths are you curious about?";
+    } else if (years < 40) {
+        return "Your thirties often bring focus and deepening expertise. What legacy are you beginning to build?";
+    } else if (years < 50) {
+        return "Your forties can be a time of mastery and mentorship. How are you sharing your wisdom?";
+    } else if (years < 60) {
+        return "The fifties often bring perspective and integration. How are your life experiences connecting?";
+    } else if (years < 70) {
+        return "Your sixties can bring renewed freedom and purpose. What dreams are still calling to you?";
+    } else if (years < 80) {
+        return "The seventies offer wisdom and the chance to savor life's simple joys. What brings you peace?";
+    } else {
+        return "Your life holds decades of wisdom and experience. What insights would you share with younger generations?";
+    }
+}
+
+/**
+ * Creates a visual representation of life in weeks
+ */
+function createLifeVisualization(years, daysPassed) {
+    const container = document.getElementById('lifeVisualization');
+    if (!container) return;
+    
+    container.innerHTML = '';
+    
+    // Create dots representing weeks in a 90-year life
+    const totalWeeks = 90 * 52; // 90 years in weeks
+    const weeksPassed = Math.floor(daysPassed / 7);
+    
+    // Create a limited number of dots for performance
+    const maxDots = 520; // Show 10 years of weeks
+    const startWeek = Math.max(0, weeksPassed - maxDots/2);
+    
+    for (let i = startWeek; i < startWeek + maxDots && i < totalWeeks; i++) {
+        const dot = document.createElement('div');
+        dot.className = 'life-dot';
+        if (i < weeksPassed) {
+            dot.classList.add('lived');
+        }
+        container.appendChild(dot);
+    }
+    
+    // Add explanation text
+    const explanation = document.createElement('p');
+    explanation.textContent = `Each dot represents a week. You've lived approximately ${weeksPassed.toLocaleString()} weeks.`;
+    explanation.style.fontSize = '0.8em';
+    explanation.style.marginTop = '10px';
+    explanation.style.textAlign = 'center';
+    container.appendChild(explanation);
 }
 
 /**
@@ -385,6 +677,89 @@ function calculateAge(birthDate, currentDate) {
 }
 
 /**
+ * Sets up milestone options selection
+ */
+function setupMilestoneOptions() {
+    document.addEventListener('click', function(e) {
+        if (e.target.classList.contains('milestone-option')) {
+            document.querySelectorAll('.milestone-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            e.target.classList.add('selected');
+        }
+    });
+}
+
+/**
+ * Sets up moment templates for sharing
+ */
+function setupMomentTemplates() {
+    // Add event listeners to moment template buttons if they exist
+    const templateButtons = document.querySelectorAll('.moment-template');
+    
+    templateButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const template = this.getAttribute('data-template');
+            const resultElement = document.querySelector('.result:not(:empty)');
+            
+            if (resultElement) {
+                // Get the date from the result
+                const dateElement = resultElement.querySelector('.result-date');
+                let dateText = '';
+                
+                if (dateElement) {
+                    dateText = dateElement.textContent;
+                } else {
+                    // Try to get from other elements if result-date doesn't exist
+                    const valueElement = resultElement.querySelector('.result-value');
+                    if (valueElement) {
+                        dateText = valueElement.textContent;
+                    }
+                }
+                
+                // Create sharing text based on template
+                let sharingText = '';
+                switch(template) {
+                    case 'countdown':
+                        sharingText = `I'm counting down to ${dateText}! Every day brings me closer to this special moment.`;
+                        break;
+                    case 'milestone':
+                        sharingText = `${dateText} marks an important milestone for me. Time has a way of showing what matters most.`;
+                        break;
+                    case 'reflection':
+                        sharingText = `Reflecting on ${dateText} - a day that changed my perspective. Time teaches us what truly matters.`;
+                        break;
+                    case 'gratitude':
+                        sharingText = `Feeling grateful for ${dateText} and all the moments that have led me here. Time is our most precious gift.`;
+                        break;
+                    default:
+                        sharingText = `Thinking about ${dateText} and the journey of time. Every moment matters.`;
+                }
+                
+                // Create a temporary textarea to copy the text
+                const textarea = document.createElement('textarea');
+                textarea.value = sharingText;
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+                
+                // Show feedback
+                alert('Moment template copied to clipboard! Share it with your friends.');
+            }
+        });
+    });
+}
+
+/**
+ * Sets up life visualization
+ */
+function setupLifeVisualization() {
+    // This is handled in the calculateAge function
+    // but could be expanded for standalone visualization
+}
+
+/**
  * Formats a date for display (e.g., "March 15, 2023")
  */
 function formatDateForDisplay(date) {
@@ -397,7 +772,7 @@ function formatDateForDisplay(date) {
  */
 function showResult(resultId, content) {
     const resultElement = document.getElementById(resultId);
-    resultElement.innerHTML = content;
+    resultElement.innerHTML = `<h3>Results</h3>${content}`;
     resultElement.classList.add('active');
     
     // Scroll to result
