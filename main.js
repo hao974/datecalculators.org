@@ -81,41 +81,58 @@ function initShareFeature() {
 }
 
 // 保存到时间线功能
+// 保存到时间线功能
 function initSaveToTimeline() {
     const saveBtn = document.querySelector('.save-btn');
     const savedConfirmation = document.querySelector('.saved-confirmation');
     
     if (saveBtn) {
         saveBtn.addEventListener('click', function() {
-            // 在实际应用中，这里应该发送请求到服务器保存旅程
-            // 这里我们只是模拟保存成功
+            // 获取旅程信息
+            const journeyTitle = document.querySelector('.journey-title')?.textContent || 'Journey';
             
-            // 显示保存成功消息
-            if (savedConfirmation) {
-                savedConfirmation.classList.add('active');
-                
-                // 5秒后隐藏消息
-                setTimeout(() => {
-                    savedConfirmation.classList.remove('active');
-                }, 5000);
+            // 尝试获取第一张图片作为缩略图
+            let journeyImage = '';
+            const firstImage = document.querySelector('.journey-photos img');
+            if (firstImage) {
+                journeyImage = firstImage.getAttribute('src');
             }
             
-            // 模拟保存到本地存储
+            // 创建旅程数据对象
             const journeyData = {
                 id: Date.now(),
-                title: document.querySelector('.journey-title')?.textContent || 'Journey',
+                title: journeyTitle,
                 date: new Date().toISOString(),
-                url: window.location.href
+                url: window.location.href,
+                image: journeyImage
             };
             
             // 获取已保存的旅程
             let savedJourneys = JSON.parse(localStorage.getItem('savedJourneys') || '[]');
             
-            // 添加新旅程
-            savedJourneys.push(journeyData);
+            // 检查是否已经保存过这个旅程（基于URL）
+            const alreadySaved = savedJourneys.some(journey => journey.url === journeyData.url);
             
-            // 保存回本地存储
-            localStorage.setItem('savedJourneys', JSON.stringify(savedJourneys));
+            if (!alreadySaved) {
+                // 添加新旅程
+                savedJourneys.push(journeyData);
+                
+                // 保存回本地存储
+                localStorage.setItem('savedJourneys', JSON.stringify(savedJourneys));
+                
+                // 显示保存成功消息
+                if (savedConfirmation) {
+                    savedConfirmation.classList.add('active');
+                    
+                    // 5秒后隐藏消息
+                    setTimeout(() => {
+                        savedConfirmation.classList.remove('active');
+                    }, 5000);
+                }
+            } else {
+                // 显示已保存提示
+                alert('This journey is already saved to your timeline!');
+            }
         });
     }
 }
