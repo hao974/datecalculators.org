@@ -22,94 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Set up life visualization
     setupLifeVisualization();
-    
-    // Set up save to timeline functionality
-    setupSaveToTimeline();
 });
-
-/**
- * Sets up the save to timeline functionality
- */
-function setupSaveToTimeline() {
-    const saveButtons = document.querySelectorAll('.save-to-timeline');
-    
-    saveButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            // Get the closest result container
-            const resultContainer = this.closest('.result') || this.closest('.calculator-section');
-            
-            if (resultContainer) {
-                // Get the title of the journey (use the page title or a specific element)
-                const journeyTitle = document.querySelector('.page-title')?.textContent || 
-                                    resultContainer.querySelector('h2')?.textContent || 
-                                    'Journey Moment';
-                
-                // Get the content to save
-                const content = resultContainer.innerHTML;
-                
-                // Create a journey object
-                const journey = {
-                    id: Date.now(),
-                    title: journeyTitle,
-                    content: content,
-                    date: new Date().toISOString(),
-                    type: resultContainer.id || 'general'
-                };
-                
-                // Save to localStorage
-                saveJourneyToTimeline(journey);
-                
-                // Show confirmation
-                showTimelineConfirmation();
-            }
-        });
-    });
-}
-
-/**
- * Saves a journey to the timeline in localStorage
- */
-function saveJourneyToTimeline(journey) {
-    // Get existing saved journeys
-    let savedJourneys = JSON.parse(localStorage.getItem('savedJourneys') || '[]');
-    
-    // Add new journey
-    savedJourneys.push(journey);
-    
-    // Save back to localStorage
-    localStorage.setItem('savedJourneys', JSON.stringify(savedJourneys));
-}
-
-/**
- * Shows a confirmation message when a journey is saved
- */
-function showTimelineConfirmation() {
-    // Create confirmation element if it doesn't exist
-    let confirmation = document.querySelector('.timeline-confirmation');
-    
-    if (!confirmation) {
-        confirmation = document.createElement('div');
-        confirmation.className = 'timeline-confirmation';
-        document.body.appendChild(confirmation);
-    }
-    
-    // Set content and show
-    confirmation.innerHTML = `
-        <div class="confirmation-content">
-            <i class="fas fa-check-circle"></i>
-            <p>Saved to your timeline!</p>
-            <a href="my-timeline.html">View my timeline</a>
-        </div>
-    `;
-    
-    // Show the confirmation
-    confirmation.classList.add('show');
-    
-    // Hide after 3 seconds
-    setTimeout(() => {
-        confirmation.classList.remove('show');
-    }, 3000);
-}
 
 /**
  * Initializes all date inputs with appropriate default values
@@ -283,11 +196,6 @@ function setupDateDifferenceCalculator() {
             </div>
             <div class="meaning-prompt">
                 ${generateMeaningPrompt(diffResult.days, startDate, endDate)}
-            </div>
-            <div class="timeline-actions">
-                <button class="btn save-to-timeline">
-                    <i class="fas fa-bookmark"></i> Save to My Timeline
-                </button>
             </div>
         `);
         
@@ -510,11 +418,6 @@ function calculateNewDate(isAdd) {
         <div class="day-significance">
             ${getDaySignificance(newDate)}
         </div>
-        <div class="timeline-actions">
-            <button class="btn save-to-timeline">
-                <i class="fas fa-bookmark"></i> Save to My Timeline
-            </button>
-        </div>
     `);
 }
 
@@ -604,11 +507,6 @@ function setupWeekdayFinder() {
             <div class="day-significance">
                 ${getDaySignificance(date)}
             </div>
-            <div class="timeline-actions">
-                <button class="btn save-to-timeline">
-                    <i class="fas fa-bookmark"></i> Save to My Timeline
-                </button>
-            </div>
         `);
     });
 }
@@ -671,11 +569,6 @@ function setupAgeCalculator() {
                 ${generateAgeMeaningPrompt(ageDetails.years)}
             </div>
             <div id="lifeVisualization" class="life-visualization"></div>
-            <div class="timeline-actions">
-                <button class="btn save-to-timeline">
-                    <i class="fas fa-bookmark"></i> Save to My Timeline
-                </button>
-            </div>
         `);
         
         // Create life visualization
@@ -859,4 +752,21 @@ function setupLifeVisualization() {
 }
 
 /**
- * Formats a date for
+ * Formats a date for display (e.g., "March 15, 2023")
+ */
+function formatDateForDisplay(date) {
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return date.toLocaleDateString(undefined, options);
+}
+
+/**
+ * Shows the result in the specified result element
+ */
+function showResult(resultId, content) {
+    const resultElement = document.getElementById(resultId);
+    resultElement.innerHTML = content;
+    resultElement.classList.add('active');
+    
+    // Scroll to result
+    resultElement.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
