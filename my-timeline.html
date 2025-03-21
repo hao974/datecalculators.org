@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Timeline | Journey Journal</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="timeline.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <a href="index.html" class="logo">Journey Journal</a>
+                <div class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="explore.html">Explore</a>
+                    <a href="my-timeline.html" class="active">My Timeline</a>
+                    <a href="about.html">About</a>
+                </div>
+                <div class="nav-actions">
+                    <button class="dark-mode-toggle">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <a href="login.html" class="btn btn-outline">Sign In</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- 主要内容 -->
+    <main>
+        <section class="timeline-section">
+            <div class="container">
+                <h1 class="page-title">My Timeline</h1>
+                <p class="page-description">View all the journeys you've saved to your personal timeline.</p>
+                
+                <div class="timeline-container">
+                    <!-- 这里将通过JavaScript动态填充保存的旅程 -->
+                    <div id="saved-journeys">
+                        <div class="empty-state" id="empty-timeline">
+                            <i class="fas fa-bookmark"></i>
+                            <h3>No saved journeys yet</h3>
+                            <p>When you save journeys, they will appear here on your timeline.</p>
+                            <a href="explore.html" class="btn btn-primary">Explore Journeys</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>Journey Journal</h2>
+                    <p>Discover, Experience, Remember</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h3>Navigation</h3>
+                        <a href="index.html">Home</a>
+                        <a href="explore.html">Explore</a>
+                        <a href="my-timeline.html">My Timeline</a>
+                        <a href="about.html">About</a>
+                    </div>
+                    <div class="footer-column">
+                        <h3>Connect</h3>
+                        <a href="#">Facebook</a>
+                        <a href="#">Instagram</a>
+                        <a href="#">Twitter</a>
+                        <a href="#">YouTube</a>
+                    </div>
+                    <div class="footer-column">
+                        <h3>Legal</h3>
+                        <a href="#">Terms of Service</a>
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Cookie Policy</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Journey Journal. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+    <script src="timeline.js"></script>
+</body>
+</html>
